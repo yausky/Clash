@@ -67,7 +67,7 @@ const BLKEY = inArg.blkey == undefined ? "" : decodeURI(inArg.blkey);
 const blockquic = inArg.blockquic == undefined ? "" : decodeURI(inArg.blockquic);
 
 const tpl = inArg.tpl ? decodeURI(inArg.tpl) : "{first}{flag}{prefix}{region}{retain}{rate}";
-const bucket = inArg.bucket ? decodeURI(inArg.bucket) : "off"; // region|tag|off
+const bucket = inArg.bucket ? decodeURI(inArg.bucket) : "region"; // region|tag|off
 
 const onlyRule = inArg.only ? decodeURI(inArg.only) : "";
 const skipRule = inArg.skip ? decodeURI(inArg.skip) : "";
