@@ -443,7 +443,7 @@ function jxh(nodes) {
   return nodes;
 }
 
-// ===== one：只有一个节点去 01（沿用你的版本；但最终也会 normalize 去空格）=====
+// ===== one：只有一个节点去 01（修正版）=====
 function oneP(e) {
   const t = e.reduce((acc, item) => {
     const n = item.name.replace(/[^A-Za-z0-9\u00C0-\u017F\u4E00-\u9FFF]+\d+$/, "");
@@ -451,11 +451,17 @@ function oneP(e) {
     acc[n].push(item);
     return acc;
   }, {});
+
   for (const k in t) {
-    if (t[k].length === 1 && t[k][0].name.endsWith("01")) {
-      t[k][0].name = t[k][0].name.replace(/[^.]01/, "");
+    if (t[k].length === 1) {
+      const name = t[k][0].name;
+      // 只有一个节点时，若名字以 01 结尾，则只删除末尾 01，不删除前一个字
+      if (name.endsWith("01") && !name.endsWith(".01")) {
+        t[k][0].name = name.replace(/01$/, "");
+      }
     }
   }
+
   return e;
 }
 
