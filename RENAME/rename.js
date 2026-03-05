@@ -443,22 +443,29 @@ function jxh(nodes) {
   return nodes;
 }
 
-// ===== one：只有一个节点去 01（修正版）=====
+// ===== one：如果同地区只有一个节点，则去掉末尾 01；如果有多个，则保留编号 =====
 function oneP(e) {
   const t = e.reduce((acc, item) => {
-    const n = item.name.replace(/[^A-Za-z0-9\u00C0-\u017F\u4E00-\u9FFF]+\d+$/, "");
-    if (!acc[n]) acc[n] = [];
-    acc[n].push(item);
+    const name = item.name.trim();
+
+    // 分组键：去掉末尾编号（如 香港01 -> 香港，墨西哥01 -> 墨西哥）
+    // 支持：
+    // 香港01 / 香港1
+    // 香港-01 / 香港_01 / 香港 01
+    const base = name.replace(/(?:[\s._-]*)0?\d+$/, "");
+
+    if (!acc[base]) acc[base] = [];
+    acc[base].push(item);
     return acc;
   }, {});
 
   for (const k in t) {
+    // 只有一个节点时，才去掉末尾 01
     if (t[k].length === 1) {
-      const name = t[k][0].name;
-      // 只有一个节点时，若名字以 01 结尾，则只删除末尾 01，不删除前一个字
-      if (name.endsWith("01") && !name.endsWith(".01")) {
-        t[k][0].name = name.replace(/01$/, "");
-      }
+      const name = t[k][0].name.trim();
+
+      // 仅当末尾是 01 时才删除；02/03 不动
+      t[k][0].name = name.replace(/(?:[\s._-]*)01$/, "");
     }
   }
 
