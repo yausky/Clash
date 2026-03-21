@@ -4,3 +4,5 @@ payload:
   - DOMAIN-SUFFIX,metademolab.com
   - DOMAIN-SUFFIX,meta.com
   - DOMAIN-SUFFIX,aidemos.meta.com
+##  ai.meta.com
+  - IP-CIDR,157.240.0.0/17
