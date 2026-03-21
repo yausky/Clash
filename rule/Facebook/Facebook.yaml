@@ -5,8 +5,8 @@
 # DOMAIN-KEYWORD: 2
 # DOMAIN-SUFFIX: 543
 # IP-ASN: 1
-# IP-CIDR: 23
-# TOTAL: 569
+# IP-CIDR: 22
+# TOTAL: 568
 payload:
   - DOMAIN-SUFFIX,aboutfacebook.com
   - DOMAIN-SUFFIX,accessfacebookfromschool.com
