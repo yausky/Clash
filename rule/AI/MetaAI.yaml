@@ -1,0 +1,6 @@
+## 跟Facebook分离
+payload:
+  - DOMAIN-SUFFIX,meta.ai
+  - DOMAIN-SUFFIX,metademolab.com
+  - DOMAIN-SUFFIX,meta.com
+  - DOMAIN-SUFFIX,aidemos.meta.com
